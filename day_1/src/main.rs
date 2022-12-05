@@ -4,7 +4,7 @@ use std::io::prelude::*;
 use std::io::BufReader;
 
 //Part1: Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?
-//TODO Part2: Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?
+//Part2: Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?
 
 fn main() {
     let file =
@@ -48,16 +48,20 @@ fn main() {
             }
         }
         println!(
-            "\n\nMax_value is: {}, carried by {}\n\n",
+            "\n\nMax_value is: {}, carried by {}",
             max_value.1, max_value.0
         );
         println!(
-            "\n\nSecond_max_value is: {}, carried by {}\n\n",
+            "Second_max_value is: {}, carried by {}",
             sec_max_value.1, sec_max_value.0
         );
         println!(
-            "\n\nThird_max_value is: {}, carried by {}\n\n",
+            "Third_max_value is: {}, carried by {}",
             third_max_value.1, third_max_value.0
+        );
+        println!(
+            "Together, they are carrying {} cals\n\n",
+            third_max_value.1 + sec_max_value.1 + max_value.1
         );
     } else {
         println!("\n\nerror:  no values were stored\n\n");
