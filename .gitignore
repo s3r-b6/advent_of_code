@@ -1,1 +1,4 @@
-/*/target
+aoc_rust/*/target
+aoc_ocaml/*/_build
+aoc_ocaml/*/lib
+aoc_ocaml/*/test
