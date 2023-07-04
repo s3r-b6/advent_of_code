@@ -16,15 +16,9 @@ let get_item_priority ch =
 
 let rec repeated_char_p1 str x =
   let half_size = String.length str / 2 in
-  if x < half_size - 1 then
-    let ch1 = String.get str x in
-    if String.contains_from str half_size ch1 then get_item_priority ch1
-    else repeated_char_p1 str (x + 1)
-  else
-    let ch2 = String.get str x in
-    let str2 = String.sub str half_size half_size in
-    if String.contains str2 ch2 then get_item_priority ch2
-    else repeated_char_p1 str (x + 1)
+  let ch1 = String.get str x in
+  if String.contains_from str half_size ch1 then get_item_priority ch1
+  else repeated_char_p1 str (x + 1)
 
 let rec sum_priorities acc list =
   match list with
