@@ -28,7 +28,7 @@ let parse_line_p1 str =
     | 'A', b -> ( match b with 'X' -> 4 | 'Y' -> 8 | 'Z' -> 3 | _ -> exit 0)
     | 'B', b -> ( match b with 'X' -> 1 | 'Y' -> 5 | 'Z' -> 9 | _ -> exit 0)
     | 'C', b -> ( match b with 'X' -> 7 | 'Y' -> 2 | 'Z' -> 6 | _ -> exit 0)
-    | _, _ -> exit 0
+    | _, _ -> assert false
   else exit 0
 in
 
