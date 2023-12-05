@@ -1,3 +1,4 @@
+// https://adventofcode.com/2023/day/4
 fn main() {
     let contents = include_str!("../input.txt");
     let lines: Vec<&str> = contents.lines().collect();
