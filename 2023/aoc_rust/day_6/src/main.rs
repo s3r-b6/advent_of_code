@@ -1,3 +1,4 @@
+// https://adventofcode.com/2023/day/6
 fn main() {
     let contents = include_str!("../input.txt");
     let mut lines = contents.lines();
