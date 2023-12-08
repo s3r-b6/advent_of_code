@@ -1,11 +1,17 @@
 use std::collections::HashMap;
 
-/*
-
-
-*/
 fn main() {
     let contents = include_str!("../input.txt");
+    //    let contents = "LR
+    //
+    //11A = (11B, XXX)
+    //11B = (XXX, 11Z)
+    //11Z = (11B, XXX)
+    //22A = (22B, XXX)
+    //22B = (22C, 22C)
+    //22C = (22Z, 22Z)
+    //22Z = (22B, 22B)
+    //XXX = (XXX, XXX)";
 
     let mut lines = contents.lines();
 
@@ -25,20 +31,48 @@ fn main() {
         })
         .collect();
 
+    println!("{}", part_1(instr, &maps));
+    println!("{}", part_2(instr, &maps));
+}
+
+fn part_1(instr: &str, maps: &HashMap<&str, (&str, &str)>) -> usize {
+    let directions: Vec<char> = instr.chars().collect();
     let mut curr_pos = "AAA";
     let mut count = 0;
 
     while curr_pos != "ZZZ" {
-        for ch in instr.chars() {
-            curr_pos = if ch == 'L' {
-                maps.get(curr_pos).unwrap().0
-            } else {
-                maps.get(curr_pos).unwrap().1
-            };
+        let ch = directions[count % 2];
 
-            count += 1;
-        }
+        curr_pos = if ch == 'L' {
+            maps.get(curr_pos).unwrap().0
+        } else {
+            maps.get(curr_pos).unwrap().1
+        };
+
+        count += 1;
     }
 
-    println!("{}, {}", count, curr_pos);
+    count
+}
+
+fn part_2(instr: &str, maps: &HashMap<&str, (&str, &str)>) -> usize {
+    let directions: Vec<char> = instr.chars().collect();
+    let mut positions: Vec<&&str> = maps.keys().filter(|k| k.ends_with('A')).collect();
+
+    let mut count = 0;
+    loop {
+        for idx in 0..positions.len() {
+            positions[idx] = if directions[count % 2] == 'L' {
+                &maps.get(positions[idx]).unwrap().0
+            } else {
+                &maps.get(positions[idx]).unwrap().1
+            };
+        }
+
+        count += 1;
+
+        if positions.iter().all(|st| st.ends_with('Z')) {
+            return count;
+        }
+    }
 }
